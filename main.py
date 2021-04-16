@@ -1,13 +1,13 @@
 def printBoolArray(arr):
   uniqueFiles = sorted(list({el[0] for el in arr}), key=lambda x:x[1])
   uniqueFiles = [el[0] for el in uniqueFiles]
+  returns = []
   for file in uniqueFiles:
     returnList = []
     lista = [m[1] for m in arr if m[0][0] == file]
     returnList = [str(int(any(n in elem for elem in lista))) for n in objects]
-    print(file, ' '.join(returnList))
-
-
+    returns.append((file, returnList))
+  return returns
 
 T, N = map(int, input().split())
 objects = ["bison", "elephant", "horse", "ibis", "sky", "mountain", "building", "flower", "sand", "tree", "field", "road", "tower", "ocean", "cliff", "waterfall"]
@@ -26,7 +26,8 @@ if T == 1:
       last_object = nome_arquivo
       j += 1
     readObjects.append([(nome_arquivo, j), atributo_objeto,x1, y1, x2, y2])
-  printBoolArray(readObjects)
+  listBool = printBoolArray(readObjects)
+  [print(n[0], ' '.join(n[1])) for n in listBool]
 
 if T == 2:
   frequencia_objetos = []
